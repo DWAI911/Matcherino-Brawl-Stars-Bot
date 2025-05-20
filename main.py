@@ -137,7 +137,9 @@ class Client (discord.Client):
                 await message.channel.send(f"{message.author.mention}, links are not allowed in this server.")
                 log_channel = self.get_channel(LOG_CHANNEL_ID)
                 if log_channel is not None:
-                    await log_channel.send(f"Deleted message from {message.author} for containing a link: {message.content}")
+                    if "@everyone" in message.content or "@here" in message.content:
+                        message.content = message.content.replace("@everyone", "`@everyone`").replace("@here", "`@here`")
+                        await log_channel.send(f"Deleted message from {message.author} for containing a link: {message.content}")
             except discord.Forbidden:
                 print(f"Could not delete message from {message.author}. Check bot permissions.")
             except discord.HTTPException as e:
