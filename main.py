@@ -53,7 +53,7 @@ Currently, there are two exclusive pins available through Matcherino for the gam
 """
 
 # Regular expression pattern for detecting links
-link_pattern = r'(https?://\S+|www\.\S+|\S+\.(com|net|org|gov|edu|ca|uk|io))'
+link_pattern = r'(https?://\S+|www\.\S+|\S+\.(com|net|org|gov|edu|ca|uk|io|gg|to|ly)|discord\.gg/\S+|discord\.com/invite/\S+)'
 
 # Create a new Discord client
 class Client (discord.Client):
