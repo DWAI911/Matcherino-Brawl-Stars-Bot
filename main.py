@@ -118,7 +118,7 @@ class Client (discord.Client):
         if any(word in message.content.lower() for word in BANNED_WORDS):
             try:
                 await message.delete()
-                await message.channel.send(f"{message.author.mention}, your message was removed for using inappropriate language. Further use will result in a ban.")
+                await message.channel.send(f"{message.author.mention}, your message was removed for using inappropriate language. Further use will result in a ban.", delete_after=5)
                 log_channel = self.get_channel(LOG_CHANNEL_ID)
                 if log_channel is not None:
                     await log_channel.send(f"Deleted message from {message.author} for profanity: {message.content}")
@@ -134,7 +134,7 @@ class Client (discord.Client):
         if not bypass_role and not organizer_role and re.search(link_pattern, message.content, re.IGNORECASE):
             try:
                 await message.delete()
-                await message.channel.send(f"{message.author.mention}, links are not allowed in this server.")
+                await message.channel.send(f"{message.author.mention}, links are not allowed in this server.", delete_after=5)
                 log_channel = self.get_channel(LOG_CHANNEL_ID)
                 if log_channel is not None:
                     if "@everyone" in message.content or "@here" in message.content:
